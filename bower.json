@@ -1,0 +1,28 @@
+{
+  "name": "RestApp",
+  "authors": [
+    "Sarath S Nair <sarathsnairxyz@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "angular": "^1.5.5",
+    "angular-ui-codemirror": "^0.3.0",
+    "bootstrap": "^3.3.6",
+    "angular-bootstrap": "^1.3.2"
+  }
+}

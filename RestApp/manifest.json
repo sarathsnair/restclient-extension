@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "RESTClient",
+    "description": "RESTClient extension for Google Chrome",
+    "version": "1.0",
+    "author": "Sarath",
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    },
+    "browser_action": {
+      "default_icon": "assets/images/icon.png"
+   }
+}
