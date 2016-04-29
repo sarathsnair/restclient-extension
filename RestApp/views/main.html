@@ -4,22 +4,50 @@
             <h3><strong>REST</strong> Client</h3>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Request</strong></div>
                     <div class="panel-body">
-                        <h1>sarath</h1>
-                        <h1>sarath</h1>
+                        <div id="request-url">
+                            <div id="request-url-wrapper">
+                                <div id="request-url-container">
+                                    <input type="text" name="url" id="url" tabindex="1" class="input-text-light ui-autocomplete-input" placeholder="Enter request URL here" autocomplete="off">
+                                </div>
+                            </div>
+                            <div id="request-modifiers">
+                                <div id="request-method-container">
+                                    <select id="request-method-selector" ng-model="myDropDown">
+                                        <option value="GET">GET</option>
+                                        <option value="POST">POST</option>
+                                        <option value="PUT">PUT</option>
+                                        <option value="DELETE">DELETE</option>
+                                    </select>
+                                </div>
+                                <div id="request-url-buttons-container">
+                                    <button class="btn" id="url-keyvaleditor-actions-open"><i class="icon-edit"></i> URL params
+                    </button>
+                                    <button class="btn" id="headers-keyvaleditor-actions-open"><i class="icon-edit"></i> Headers (<span class="headers-count">0</span>)
+                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="abc">
+                            <input ng-show="myDropDown=='POST'" type="text">
+                        </div>
                     </div>
                 </div>
 
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Response</strong></div>
                     <div class="panel-body">
-                        <h1>sarath</h1>
-                        <h1>sarath</h1>
+                        <uib-tabset active="active" type="tabs">
+                            <uib-tab index="0" heading="Response Body">Static content</uib-tab>
+                            <uib-tab index="1" heading="Response Body(RAW)"></uib-tab>
+                            <uib-tab index="2" heading="Response Headers"></uib-tab>
+                            <uib-tab index="3" heading="Request Details"></uib-tab>
+                        </uib-tabset>
                     </div>
 
                 </div>
@@ -31,7 +59,7 @@
             </div>
         </div> -->
 
-        <uib-progressbar class="progress-striped active" value="{{10}}" type="info">
+        <uib-progressbar class="progress-striped active" value="progressValue" type="info">
             <i ng-show="showWarning">!!! Watch out !!!</i></uib-progressbar>
     </div>
 </div>

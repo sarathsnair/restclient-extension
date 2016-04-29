@@ -1,7 +1,73 @@
-.panel{
+.panel {
     border-radius: 0px;
 }
 
-.panel-heading{
+.panel-heading {
     text-align: center;
+}
+
+.req-typ-btn {
+    border-radius: 0px;
+}
+
+#request-url-wrapper {
+    margin-right: -350px;
+    width: 100%;
+    float: left;
+}
+
+#request-url-container {
+    margin-right: 350px;
+}
+
+#url {
+    border-top: none;
+    background-color: #ffffff;
+    transition: border linear .2s, box-shadow linear .2s;
+    display: inline-block;
+    padding: 4px 6px;
+    margin-bottom: 9px;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.input-text-light {
+    border-radius: 0;
+    min-height: 18px;
+    width: 100% !important;
+    padding: 5px;
+    padding-left: 0px;
+    color: #333 !important;
+    border: none !important;
+    border-bottom: solid thin #ccc !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    outline: none !important;
+}
+
+#request-modifiers {
+    float: right;
+}
+
+#request-method-container {
+    float: left;
+    margin-right: 10px;
+}
+
+#request-method-selector {
+    width: 100px;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+}
+
+#request-method-selector {
+    height: 30px;
+}
+
+#request-modifiers,#request-url-buttons-container{
+    display: inline-block;
+}
+
+#abc{
+    float: left;
 }
