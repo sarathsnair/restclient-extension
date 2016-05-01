@@ -4,7 +4,7 @@ var path = require('path');
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, '/RestApp/views'));
+app.set('views', path.join(__dirname, '/RestApp'));
 app.use(express.static(path.join(__dirname, '/RestApp')));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');

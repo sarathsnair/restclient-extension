@@ -1,4 +1,4 @@
-<div>
+<!--<div>
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3><strong>REST</strong> Client</h3>
@@ -16,7 +16,7 @@
                             </div>
                             <div id="request-modifiers">
                                 <div id="request-method-container">
-                                    <select id="request-method-selector" ng-model="myDropDown">
+                                    <select id="request-method-selector" ng-model="requestMethod">
                                         <option value="GET">GET</option>
                                         <option value="POST">POST</option>
                                         <option value="PUT">PUT</option>
@@ -24,22 +24,40 @@
                                     </select>
                                 </div>
                                 <div id="request-url-buttons-container">
-                                    <button class="btn" id="url-keyvaleditor-actions-open"><i class="icon-edit"></i> URL params
-                    </button>
-                                    <button class="btn" id="headers-keyvaleditor-actions-open"><i class="icon-edit"></i> Headers (<span class="headers-count">0</span>)
-                    </button>
+                                    <button class="btn btn-default" id="url-keyvaleditor-actions-open">URL params</button>
+                                    <button class="btn btn-default" id="headers-keyvaleditor-actions-open">Headers (<span class="headers-count">0</span>)</button>
                                 </div>
                             </div>
                         </div>
-                        <div id="abc">
-                            <input ng-show="myDropDown=='POST'" type="text">
+                        <br>
+                        <div id="request-detail-modifier">
+                            <div>
+                                <div id="url-keyvaleditor-container" class="row" style="margin-left: 0px;">
+                                    <div id="url-keyvaleditor">
+                                        <div class="keyvalueeditor-row keyvalueeditor-last">
+                                            <input type="text" class="keyvalueeditor-key" placeholder="URL Parameter Key" name="keyvalueeditor-key" "=" ">
+            <input type="text " class="keyvalueeditor-value keyvalueeditor-value-text " placeholder="Value " name="keyvalueeditor-value " "="">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="headers-keyvaleditor-container" class="row clearfix" style="margin-left: 0px;">
+                                    <div id="headers-keyvaleditor">
+                                        <div class="keyvalueeditor-row keyvalueeditor-last">
+                                            <input type="text" class="keyvalueeditor-key" placeholder="Header" name="keyvalueeditor-key" "=" ">
+            <input type="text " class="keyvalueeditor-value keyvalueeditor-value-text " placeholder="Value " name="keyvalueeditor-value " "="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
             </div>
             <div class="col-sm-12">
-                <div class="panel panel-default">
+                <div class="panel panel-default" ng-hide="false">
                     <div class="panel-heading"><strong>Response</strong></div>
                     <div class="panel-body">
                         <uib-tabset active="active" type="tabs">
@@ -53,13 +71,214 @@
                 </div>
             </div>
         </div>
-        <!--   <div class="progress">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                40%
-            </div>
-        </div> -->
+    </div>
+</div>-->
+<div ng-controller="MainCtrl">
+    <article>
+        <form class="col-md-12 column ng-pristine ng-valid ng-valid-url" id="requestForm">
+            <div class="col-md-6 column">
+                <section class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Request Settings</h2>
+                    </div>
+                    <div class="form-horizontal panel-body">
+                        <div class="form-group">
+                            <label for="requestUrl" class="col-md-1 control-label">URL:</label>
+                            <div class="col-md-11">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="url" ng-model="requestUrl" class="form-control" placeholder="http://www.example.com/resource/123" autofocus>
+                                            <div class="input-group-btn" title="Select the request method to use" uib-dropdown auto-close="outsideClick" is-open="requestMethod.isopen">
+                                                <button id="requestMethodButton" type="button" class="btn btn-default" uib-dropdown-toggle>{{requestMethod.selected}}&nbsp;&nbsp;<span class="caret"></span></button>
+                                                <ul uib-dropdown-menu class="dropdown-menu-right">
+                                                    <li ng-repeat="type in requestMethod.methods">
+                                                        <a href="" ng-click="changeRequestMethod(type)" ng-hide="requestMethod.selected === type">{{type}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="payload" class="col-md-1 control-label">Payload:</label>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea rows="{{payloadHeight || 2}}" class="form-control" id="payload" placeholder="application/json" ng-model="payload" ng-click="payloadHeight = 5" ng-blur="payloadHeight = 2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-controller="HeadersCtrl">
+                            <div class="hidden">
+                                <div class="httpparameter">
+                                    <a remove-on-click class="close">x</a>
+                                    <div class="row show-grid">
+                                        <div class="col-md-5">
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <input type="text" class="input-medium fakeinputname" value="">
+                                                </div>
+                                            </div>
+                                        </div>
 
-        <uib-progressbar class="progress-striped active" value="progressValue" type="info">
-            <i ng-show="showWarning">!!! Watch out !!!</i></uib-progressbar>
+                                        <div class="col-md-5">
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge realinputvalue" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="allheaders" style="display: none;">
+                                <div class="row show-grid">
+                                    <div class="col-md-6">
+                                        <div class="control-group">
+                                            <label class="control-label">Header Name</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="control-group">
+                                            <label class="control-label">Header Value</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div align="left">
+                                <button id="addheaderbutton" class="btn btn-primary" ng-click="showHeaders();">
+								<i class="icon-plus icon-white"></i> Add header
+							</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </section>
+            </div>
+
+            <div class="col-md-6 column">
+                <!--<section id="headers" class="panel panel-primary" ng-controller="HeadersCtrl">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+						<a href="" ng-click="showHeaderSection = !showHeaderSection">
+							Custom Headers
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showHeaderSection, 'glyphicon-chevron-right': !showHeaderSection}"></i>
+						</a>
+					</h2>
+                    </div>
+                    <div class="panel-collapse collapse" uib-collapse="!showHeaderSection">
+                        <div class="form-horizontal panel-body" role="form" ng-model="headers">
+
+                            <div class="form-group">
+                                <label for="select-header" class="col-md-1 control-label">Headers:</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <select id="select-header" class="form-control" ng-model="selectHeader" ng-options="header as header.label group by header.group for header in customHeaders"></select>
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="useCustomHeader(selectedHeder);">Add selected header</button>
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Edit/Delete Custom Headers." ng-disabled="selectedHeader.group === 'Examples'">
+											<span class="caret"></span>
+										</button>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a href="" ng-click="openHeaderModal(selectedHeader);">Edit Saved Header</a></li>
+                                                <li><a href="" ng-click="deleteCustomHeader(selectedHeader);">Delete Saved Header</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary full-width" ng-click="openHeaderModal();">Add New Header</button>
+                                </div>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Header Name</th>
+                                        <th>Header Value</th>
+                                        <th style="width: 100px;" class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-show="isEmptyObject(headers)">
+                                        <td colspan="3">There are no headers to display.</td>
+                                    </tr>
+                                    <tr ng-repeat="row in headers">
+                                        <td>{{row.name}}</td>
+                                        <td class="break-row">{{row.value}}</td>
+                                        <td class="text-center">
+                                            <button type="button" ng-click="removeCustomHeader(row)" class="btn btn-xs btn-danger" title="Delete this entry.">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+                                            <button type="button" ng-click="openHeaderModal(row);" class="btn btn-xs btn-primary" title="Edit this entry.">
+											<span class="glyphicon glyphicon-edit"></span>
+										</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>-->
+            </div>
+            <div id="request-form-buttons" class="pull-right">
+                <button type="button" class="btn btn-default" ng-click="cancel();" ng-show="processing" title="Cancel the current request">Cancel</button>
+                <button type="submit" class="btn btn-success" id="submitFormButton" ng-click="submit();" ng-disabled="processing || !requestUrl" analytics-on>Send Request</button>
+            </div>
+        </form>
+    </article>
+    <div id="response" class="row clearfix" ng-show="displayResponse" ng-cloak>
+        <div id="responseBody" class="col-md-12 column">
+            <section class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Response</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="well small">
+                        <strong>Request URL:</strong> <a href="{{response.requestUrl}}" target="_blank">{{response.requestUrl}}</a><br>
+                        <strong>Request Method:</strong> {{response.requestMethod}}<br>
+                        <strong>Service Response Time:</strong> {{(timerEnd - timerStart) / 1000}} seconds
+                    </div>
+                    <uib-tabset class="json-tabs">
+                        <uib-tab heading="Response Body">
+                            <div class="json-content" ng-if="!response.valid">
+                                <uib-alert type="danger">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span>There was a error in the response. This is often due to a mis-configured service.</span>
+                                </uib-alert>
+                            </div>
+                            <ng-switch on="!!response.body" ng-show="response.valid">
+                                <div ng-switch-when="true" hljs source="response.body" class="json-content"></div>
+                                <div ng-switch-default class="json-content"><pre>(No Response Data)</pre></div>
+                            </ng-switch>
+                        </uib-tab>
+                        <uib-tab heading="Response Body (RAW)">
+                            <div class="json-content"><pre>{{response.body}}</pre></div>
+                        </uib-tab>
+                        <uib-tab heading="Response Headers">
+                            <div hljs source="response.headers" class="json-content"></div>
+                        </uib-tab>
+                        <uib-tab heading="Request Details">
+                            <div hljs source="response.requestHeaders" class="json-content"></div>
+                        </uib-tab>
+                    </uib-tabset>
+                    <div id="copy-buttons">
+                        <button type="button" class="btn btn-primary" ng-click="copy(response.requestUrl);" title="Copy Request URL">
+							<span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy Request
+						</button>
+                        <button type="button" class="btn btn-primary" ng-click="copy(response.body);" ng-disabled="!response.body" title="Copy Response Body">
+							<span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy Response
+						</button>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 </div>
