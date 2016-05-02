@@ -99,3 +99,18 @@
     display: none;
     visibility: hidden;
 }
+
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+}
+
+.httpparameter{
+    margin: 10px;
+}

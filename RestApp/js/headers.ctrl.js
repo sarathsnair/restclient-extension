@@ -11,7 +11,7 @@ RestClientApp.controller('HeadersCtrl', function ($scope, $uibModal, headers, ut
 
 	$scope.showAllHeaders = function () {
 		$scope.showHeaderHeaders();
-		//$scope.showParamHeaders();
+		$scope.showParamHeaders();
 	};
 
 	$scope.showHeaderHeaders = function () {
@@ -21,9 +21,22 @@ RestClientApp.controller('HeadersCtrl', function ($scope, $uibModal, headers, ut
 			$("#allheaders").hide();
 		}
 	};
+	
+	$scope.showParamHeaders = function () {
+		if ($("#allparameters").find(".realinputvalue").length > 0) {
+			$("#allparameters").show();
+		} else {
+			$("#allparameters").hide();
+		}
+	};
 
 	$scope.showHeaders = function () {
 		$('.httpparameter:first').clone(true).appendTo("#allheaders");
+		$scope.showAllHeaders();
+	};
+	
+	$scope.showParameters = function () {
+		$('.httpparameter:first').clone(true).appendTo("#allparameters");
 		$scope.showAllHeaders();
 	};
 
@@ -143,12 +156,13 @@ RestClientApp.controller('HeaderModalInstanceCtrl', function ($scope, $uibModalI
 
 
 
-RestClientApp.directive('removeOnClick', function ($rootScope) {
+RestClientApp.directive('removeOnClick', function () {
     return {
-        link: function(scope, elt, attrs) {
-            elt.bind("click",function() {
-                    alert('clicked');
-                });
+        link: function (scope, elt, attrs) {
+            $(elt).bind("click", function () {
+				$(this).parent().remove();
+				scope.showAllHeaders();
+			});
         }
     }
 });
