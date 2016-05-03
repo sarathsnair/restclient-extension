@@ -1,4 +1,4 @@
-RestClientApp.controller('MainCtrl', function ($scope, $http, $rootScope, utils, progressbar,
+RestClientApp.controller('MainCtrl', function ($scope, $http, $rootScope, utils,
     $uibModal, appHelper, headers, requests, REQUEST_METHODS) {
     $scope.requestMethod = {
         selected: REQUEST_METHODS[0],
@@ -20,7 +20,6 @@ RestClientApp.controller('MainCtrl', function ($scope, $http, $rootScope, utils,
         $scope.processing = true;
 
         //Send the request.
-        $scope.progress = progressbar.PROGRESS_STATES.IN_PROGRESS;
         requests.call($scope).then(function (success) {
             appHelper.handleResponse($scope, success);
         }, function (error) {

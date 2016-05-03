@@ -90,12 +90,11 @@
     
 }*/
 
-
-.full-width{
+.full-width {
     width: 100%;
 }
 
-.hidden{
+.hidden {
     display: none;
     visibility: hidden;
 }
@@ -111,6 +110,11 @@
     filter: alpha(opacity=20);
 }
 
-.httpparameter{
+.httpparameter {
     margin: 10px;
+}
+
+.brand {
+    text-align: center;
+    margin-top: 20px;
 }

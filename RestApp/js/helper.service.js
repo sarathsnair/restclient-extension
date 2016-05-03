@@ -2,7 +2,7 @@
 /**
  * Various helper functions for the application.
  */
-RestClientApp.service('appHelper', function(utils, progressbar, GENERAL_CONSTANTS) {
+RestClientApp.service('appHelper', function(utils,  GENERAL_CONSTANTS) {
 	var helper = this;
 
 	/**
@@ -23,7 +23,6 @@ RestClientApp.service('appHelper', function(utils, progressbar, GENERAL_CONSTANT
 	 * Update the UI with the data received from the service.
 	 */
 	helper.updateView = function($scope, response) {
-		$scope.progress = progressbar.PROGRESS_STATES.COMPLETE;
 		$scope.response.requestUrl = $scope.requestUrl;
 		$scope.response.requestMethod = $scope.requestMethod.selected;
 

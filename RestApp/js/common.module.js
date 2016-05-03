@@ -47,16 +47,6 @@ common.service('utils', function() {
 	};
 
 	/**
-	 * Trigger a download of the specifed data.
-	 */
-	utils.download = function(blob, fileName) {
-		var downloadLink = angular.element('<a></a>');
-		downloadLink.attr('href', window.URL.createObjectURL(blob));
-		downloadLink.attr('download', fileName);
-		downloadLink[0].click();
-	};
-
-	/**
 	 * Empties the supplied object without destroying the object so references will still work.
 	 */
 	utils.emptyObject = function(obj) {
