@@ -9,17 +9,19 @@ A simple REST Client which responds to GET, POST, PUT, DELETE Requests
 
 git clone https://sarathsnair@bitbucket.org/sarathsnair/rest-client.git
 ```
-* Goto 
+* Goto Extensions url
 ```
 #!c
 
 chrome://extensions/
 ```
- - Extensions Page
-
+* Turn the developer mode ON
+* Select Load unpacked extensions
+* Browse the *RestApp* directory within the cloned repository 
+* Extension icon will appear the Google Chrome
 
 ### What is working now ###
-* Basic http requests
+* Basic http requests using angular $http
 
 ### Features to be added ###
 * Add custom headers and parameters
