@@ -41,6 +41,17 @@ RestClientApp.service('appHelper', function(utils,  GENERAL_CONSTANTS) {
 				'requestHeaders': ""
 			});
 		}
+		
+		
+		if (response.status >= 200 && response.status < 300) {
+			$scope.responseStatusClass = 'panel-success';
+		}
+		else if(response.status >= 400){
+			$scope.responseStatusClass = 'panel-danger';
+		}
+		else{
+			$scope.responseStatusClass = 'panel-warning';
+		}
 
 		//Show the view.
 		$scope.firstTab = {active: true};
